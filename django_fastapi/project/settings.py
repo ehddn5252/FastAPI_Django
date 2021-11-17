@@ -78,4 +78,4 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 )
 
-PROJECT_NAME = "django-fastapi-project"
+PROJECT_NAME = "FastAPI_Django"
