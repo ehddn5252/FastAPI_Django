@@ -8,3 +8,7 @@ class Item(models.Model):
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="items"
     )
+
+class UserInfo(models.Model):
+    id = models.CharField(max_length=50, primary_key=True)
+    password = models.CharField(max_length=50)
