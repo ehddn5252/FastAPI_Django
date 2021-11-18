@@ -42,14 +42,7 @@ TEMPLATES = [
     }
 ]
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    }
-}
-
-# add mySQL connection
+# notebook_local
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -61,10 +54,21 @@ DATABASES = {
     }
 }
 
+# add mySQL connection
+# PC local
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'd_f2',
+        'USER': 'root',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -79,3 +83,4 @@ STATICFILES_FINDERS = (
 )
 
 PROJECT_NAME = "FastAPI_Django"
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'

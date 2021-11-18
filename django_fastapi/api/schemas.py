@@ -4,7 +4,6 @@ from pydantic import BaseModel
 class ItemBase(BaseModel):
     title: str
     description: str = None
-    description2: str = None
 
 class ItemCreate(ItemBase):
     pass
@@ -13,22 +12,37 @@ class ItemCreate(ItemBase):
 class Item(ItemBase):
     id: int
     owner_id: int
-
     class Config:
         orm_mode = True
 
 
 # 2021.11.17 added
 class UserInfoBase(BaseModel):
-    id:str
-    password: str = None
+    user_id: str
+    user_password: str = None
 
 class UserInfoCreate(UserInfoBase):
     pass
 
-
 class UserInfo(UserInfoBase):
-    User_info_id: int
+    id: int
+    owner_id: int
+    class Config:
+        orm_mode = True
 
+
+"""
+# 2021.11.18 added
+class TestBase(BaseModel):
+    test_id: int
+    test_password: str = None
+    test_description: str = None
+
+class TestCreate(TestBase):
+    pass
+
+class Test(TestBase):
+    user_test_id: int
     class config:
         orm_mode = True
+"""
