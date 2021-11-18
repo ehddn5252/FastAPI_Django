@@ -15,3 +15,12 @@ class UserInfo(models.Model):
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="userinfos"
     )
+
+# 여기는 보여지는 이름이다.
+class Login(models.Model):
+    user_id = models.CharField(max_length=50, primary_key=True)
+    user_password = models.CharField(max_length=50)
+    id2 = models.IntegerField()
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="Login"
+    )

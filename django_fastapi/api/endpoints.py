@@ -3,10 +3,11 @@ from typing import List
 from fastapi import APIRouter
 from django.http import HttpResponse
 from api import models, schemas
+from fastapi import FastAPI
 
 
 api_router = APIRouter()
-
+app = FastAPI()
 
 @api_router.post("/items", response_model=schemas.Item)
 def create_item(item: schemas.ItemCreate):
@@ -28,3 +29,12 @@ def read_user_info():
     user_infos = list(models.UserInfo.objects.all())
     return user_infos
 
+@api_router.post("/Login")
+def create_user_info(login):
+    login = list(models.login.create(**login.dict()))
+    return login
+
+@api_router.get("/Login")
+def read_user_info():
+    login = list(models.login.objects.all())
+    return login
