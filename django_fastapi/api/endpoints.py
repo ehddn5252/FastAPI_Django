@@ -28,14 +28,3 @@ def read_user_info():
     user_infos = list(models.UserInfo.objects.all())
     return user_infos
 
-"""
-@api_router.post("/test", response_model=List[schemas.Test])
-def create_test(test: schemas.TestCreate):
-    test = list(models.UserInfo.create(**test.dict()))
-    return test
-
-@api_router.get("/test",response_model = List[schemas.Test])
-def read_test():
-    tests = list(models.UserInfo.objects.all())
-    return tests
-"""

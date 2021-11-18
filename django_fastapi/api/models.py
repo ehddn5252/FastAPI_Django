@@ -15,9 +15,3 @@ class UserInfo(models.Model):
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="userinfos"
     )
-"""
-class Test(models.Model):
-    test_id: int = models.IntegerField(primary_key=True)
-    test_password: str = models.CharField(max_length=50)
-    test_description: str = models.CharField(max_length=50)
-"""
