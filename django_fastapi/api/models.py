@@ -25,3 +25,7 @@ class Login(models.Model):
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="login"
     )
+
+class Test1(models.Model):
+    test1 = models.CharField(max_length=50, primary_key=True)
+    test2 = models.CharField(max_length=50, primary_key=False)

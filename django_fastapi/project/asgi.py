@@ -4,14 +4,15 @@ from django.conf import settings
 from django.core.wsgi import get_wsgi_application
 
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
+#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 apps.populate(settings.INSTALLED_APPS)
 
 
 from fastapi import FastAPI
 from fastapi.middleware.wsgi import WSGIMiddleware
 from starlette.middleware.cors import CORSMiddleware
-from api.endpoints import api_router
+from django_fastapi.api.endpoints import api_router
 
 def get_application() -> FastAPI:
     """

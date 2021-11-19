@@ -35,8 +35,7 @@ def create_user_info(user_info: schemas.UserInfoCreate, request: Request):
         return created_user_info
     return HttpResponse("user_id is already existed please try other id")
 
-
-@api_router.get("/userinfos",response_model = List[schemas.UserInfo])
+@api_router.get("/userinfos", response_model=List[schemas.UserInfo])
 def read_user_info():
     user_infos = list(models.UserInfo.objects.all())
     return user_infos
@@ -51,3 +50,13 @@ def create_login(login):
 def read_login():
     login = list(models.Login.objects.all())
     return login
+
+@api_router.post("/test1")
+def create_test1(test1):
+    test = list(models.Test1.create(**test1.dict()))
+    return test
+
+@api_router.get("/test1")
+def read_test1():
+    tests = list(models.Test1.objects.all())
+    return tests
