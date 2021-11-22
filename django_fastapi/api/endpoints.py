@@ -7,6 +7,9 @@ from fastapi import FastAPI, Request
 from django.forms.models import model_to_dict
 from django.shortcuts import render, redirect
 from random import *
+import json
+import jwt
+
 api_router = APIRouter()
 app = FastAPI()
 
@@ -43,7 +46,6 @@ def read_user_info():
 @api_router.post("/login")
 def create_login(login):
     login = list(models.Login.create(**login.dict()))
-
     return login
 
 @api_router.get("/login")
@@ -54,9 +56,24 @@ def read_login():
 @api_router.post("/test1")
 def create_test1(test1):
     test = list(models.Test1.create(**test1.dict()))
+    print("============================")
+    print(test)
+    payload = {"content": test}
+    secret_key = "secret_key"
+    algorithm = "HS256"
+    encoded_jwt = jwt.encode(payload = payload, key=secret_key, algorithm=algorithm)
     return test
 
 @api_router.get("/test1")
 def read_test1():
+    import base64
     tests = list(models.Test1.objects.all())
+    secret_key = "secret_key"
+    algorithm = "HS256"
+
+    for index, test in enumerate(tests):
+        encoded_jwt = jwt.encode(payload={"token": tests[index].token}, key=secret_key, algorithm=algorithm)
+        tests[index].token = encoded_jwt
+    print(type(tests[0].test1))
+    #decoded_jwt = jwt.decode(jwt=encoded_jwt, key=secret_key, algorithms=algorithm)
     return tests

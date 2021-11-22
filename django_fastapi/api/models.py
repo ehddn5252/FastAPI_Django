@@ -29,3 +29,4 @@ class Login(models.Model):
 class Test1(models.Model):
     test1 = models.CharField(max_length=50, primary_key=True)
     test2 = models.CharField(max_length=50, primary_key=False)
+    token = models.CharField(max_length=100, primary_key=False)
