@@ -65,7 +65,6 @@ def get_user(db, username: str):
         user_dict = db[username]
         return UserInDB(**user_dict)
 
-
 def authenticate_user(fake_db, username: str, password: str):
     user = get_user(fake_db, username)
     if not user:
@@ -73,7 +72,6 @@ def authenticate_user(fake_db, username: str, password: str):
     if not verify_password(password, user.hashed_password):
         return False
     return user
-
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()

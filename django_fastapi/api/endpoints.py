@@ -13,6 +13,10 @@ import jwt
 api_router = APIRouter()
 app = FastAPI()
 
+@api_router.get("/")
+def abc():
+    return {"message": "hello"}
+
 @api_router.post("/items", response_model=schemas.Item)
 def create_item(item: schemas.ItemCreate):
     # 객체 생성
@@ -53,21 +57,21 @@ def read_login():
     login = list(models.Login.objects.all())
     return login
 
-@api_router.post("/test1")
+@api_router.get("/test1/{test1}")
 def create_test1(test1):
-    test = list(models.Test1.create(**test1.dict()))
-    print("============================")
-    print(test)
-    payload = {"content": test}
-    secret_key = "secret_key"
-    algorithm = "HS256"
-    encoded_jwt = jwt.encode(payload = payload, key=secret_key, algorithm=algorithm)
-    return test
+    #test = list(models.Test1.objects.create(**test1.dict()))
+    dict = {"test1": test1}
+    test1 = list(models.Test1.objects.create())
+    print("====================")
+    print(test1)
+    test1[0] = {"test1": "test1", "test2": "test2", "token": "token"}
+    return test1
 
 @api_router.get("/test1")
 def read_test1():
     import base64
     tests = list(models.Test1.objects.all())
+    # JWT 는 대칭키 방식을 사용하며 encode 와 decode 할 때 같은 key 를 사용 해야한다
     secret_key = "secret_key"
     algorithm = "HS256"
 
